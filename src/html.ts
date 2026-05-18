@@ -126,7 +126,7 @@ export function getHTML(): string {
     border-radius: 14px;
     padding: 16px 18px;
     overflow: hidden;
-    transition: all 0.2s;
+    transition: all 0.25s ease;
   }
 
   .clause-body:hover {
@@ -139,6 +139,54 @@ export function getHTML(): string {
     left: 0; top: 0; bottom: 0;
     width: 4px;
     border-radius: 14px 0 0 14px;
+  }
+
+  .clause-body.simplified .hl-clause {
+    opacity: 0.3;
+    text-decoration: line-through;
+    text-decoration-color: rgba(148,163,184,0.4);
+  }
+  .clause-modifiers-wrap {
+    transition: all 0.25s ease;
+    max-height: 500px;
+    opacity: 1;
+  }
+  .clause-body.simplified .clause-modifiers-wrap {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0;
+    transition: all 0.25s ease;
+  }
+  .clause-body.simplified .clause-structure-box {
+    background: rgba(34,197,94,0.08) !important;
+    border: 1px solid rgba(34,197,94,0.15);
+  }
+
+  .btn-simplify-clause {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .btn-simplify-clause:hover {
+    border-color: #22c55e;
+    color: #86efac;
+    background: rgba(34,197,94,0.08);
+  }
+  .btn-simplify-clause.active {
+    border-color: #22c55e;
+    color: #86efac;
+    background: rgba(34,197,94,0.12);
   }
 
   .clause-children {
@@ -801,7 +849,7 @@ function renderClause(c, depth, path) {
 
   let html = '<div class="clause-node">';
 
-  // Header: connector dot + line + type label
+  // Header: connector dot + line + type label + simplify button
   html += '<div class="clause-node-header">';
   html += '<div class="clause-connector">';
   html += '<div class="clause-connector-dot" style="background:' + color + '"></div>';
@@ -810,10 +858,12 @@ function renderClause(c, depth, path) {
   html += '<span class="clause-depth-indicator" style="background:' + color + '22;color:' + color + '">' + label + '</span>';
   html += '<span class="tag ' + tagCls + '">' + esc(c.type) + '</span>';
   if (c.belongs_to) html += '<span class="tag tag-gray">属于: ' + esc(c.belongs_to) + '</span>';
+  html += '<button class="btn-simplify-clause" data-target="' + clauseId + '">去掉修饰</button>';
   html += '</div>';
 
   // Body card
-  html += '<div class="clause-body" style="background:' + bg + '">';
+  const clauseId = 'clause-' + Math.random().toString(36).slice(2, 8);
+  html += '<div class="clause-body" id="' + clauseId + '" style="background:' + bg + '">';
   html += '<div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:14px 0 0 14px;background:' + color + '"></div>';
 
   // Content
@@ -833,7 +883,7 @@ function renderClause(c, depth, path) {
 
   // Modifiers
   if (c.modifiers && c.modifiers.length > 0) {
-    html += '<div class="mt-3 space-y-1.5">';
+    html += '<div class="clause-modifiers-wrap mt-3 space-y-1.5">';
     for (const m of c.modifiers) {
       html += '<div class="flex items-start gap-2 text-xs">';
       html += '<span class="tag tag-purple" style="flex-shrink:0">' + esc(m.type) + '</span>';
@@ -890,6 +940,16 @@ function renderResult(data) {
   if (data.clauses && data.clauses.length > 0) {
     $('clauses-section').classList.remove('hidden');
     $('clauses-list').innerHTML = '<div class="clause-tree">' + data.clauses.map(c => renderClause(c, 0, '')).join('') + '</div>';
+
+    $('clauses-list').querySelectorAll('.btn-simplify-clause').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        const isActive = target.classList.toggle('simplified');
+        btn.classList.toggle('active', isActive);
+        btn.textContent = isActive ? '显示全部' : '去掉修饰';
+      });
+    });
   } else { $('clauses-section').classList.add('hidden'); }
 
   if (data.modifiers && data.modifiers.length > 0) {
