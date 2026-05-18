@@ -2,9 +2,9 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { streamSSE } from 'hono/streaming';
 import { getHTML } from './html';
-import { analyzeWithRetry, simplifyWithRetry } from './ai';
+import { splitWithRetry, clauseDetailWithRetry } from './ai';
 import {
-  findCachedResult, saveAnalysis, getHistory, deleteAnalysis,
+  getHistory, deleteAnalysis,
   getSetting, setSetting, deleteSetting, getAllSettings,
   type D1Database,
 } from './db';
@@ -125,17 +125,9 @@ app.post('/api/analyze', async c => {
     return c.json({ error: message }, 400);
   }
 
-  const cached = await findCachedResult(c.env.DB, trimmed);
-  if (cached) {
-    return streamSSE(c, async s => {
-      await s.writeSSE({ data: JSON.stringify({ type: 'result', data: JSON.parse(cached) }), event: 'message' });
-      await s.writeSSE({ data: '[DONE]', event: 'message' });
-    });
-  }
-
   return streamSSE(c, async s => {
     try {
-      const { stream: aiStream, resultPromise } = await analyzeWithRetry(trimmed, config);
+      const { stream: aiStream, resultPromise } = await splitWithRetry(trimmed, config);
 
       const reader = aiStream.getReader();
       const decoder = new TextDecoder();
@@ -159,7 +151,6 @@ app.post('/api/analyze', async c => {
         try {
           const result = await resultPromise;
           await s.writeSSE({ data: JSON.stringify({ type: 'result', data: result }), event: 'message' });
-          await saveAnalysis(c.env.DB, trimmed, JSON.stringify(result));
         } catch (err) {
           const message = err instanceof Error ? err.message : '解析失败';
           await s.writeSSE({ data: JSON.stringify({ type: 'error', message }), event: 'message' });
@@ -176,22 +167,32 @@ app.post('/api/analyze', async c => {
   });
 });
 
-app.post('/api/simplify', async c => {
-  const { sentence } = await c.req.json<{ sentence: string }>();
-  if (!sentence || typeof sentence !== 'string' || !sentence.trim()) {
-    return c.json({ error: '请输入英文句子' }, 400);
+app.post('/api/analyze-clause', async c => {
+  const { sentence, clause, clause_type, clause_function } = await c.req.json<{
+    sentence: string;
+    clause: string;
+    clause_type: string;
+    clause_function: string;
+  }>();
+
+  if (!clause || !sentence) {
+    return c.json({ error: '缺少参数' }, 400);
   }
 
   let config: { AI_BASE_URL: string; AI_API_KEY: string; AI_MODEL: string };
   try {
     config = await getAIConfig(c.env.DB);
   } catch (err) {
-    return c.json({ error: err instanceof Error ? err.message : '配置读取失败' }, 400);
+    const message = err instanceof Error ? err.message : '配置读取失败';
+    return c.json({ error: message }, 400);
   }
 
   return streamSSE(c, async s => {
     try {
-      const { stream: aiStream, resultPromise } = await simplifyWithRetry(sentence.trim(), config);
+      const { stream: aiStream, resultPromise } = await clauseDetailWithRetry(
+        sentence, clause, clause_type || '', clause_function || '', config
+      );
+
       const reader = aiStream.getReader();
       const decoder = new TextDecoder();
 
@@ -201,7 +202,9 @@ app.post('/api/simplify', async c => {
             const { done, value } = await reader.read();
             if (done) break;
             const text = typeof value === 'string' ? value : decoder.decode(value, { stream: true });
-            if (text) await s.writeSSE({ data: JSON.stringify({ type: 'token', content: text }), event: 'message' });
+            if (text) {
+              await s.writeSSE({ data: JSON.stringify({ type: 'token', content: text }), event: 'message' });
+            }
           }
         } catch {}
       };
@@ -211,14 +214,16 @@ app.post('/api/simplify', async c => {
           const result = await resultPromise;
           await s.writeSSE({ data: JSON.stringify({ type: 'result', data: result }), event: 'message' });
         } catch (err) {
-          await s.writeSSE({ data: JSON.stringify({ type: 'error', message: err instanceof Error ? err.message : '解析失败' }), event: 'message' });
+          const message = err instanceof Error ? err.message : '从句分析失败';
+          await s.writeSSE({ data: JSON.stringify({ type: 'error', message }), event: 'message' });
         }
       };
 
       await Promise.all([processStream(), sendResult()]);
       await s.writeSSE({ data: '[DONE]', event: 'message' });
     } catch (err) {
-      await s.writeSSE({ data: JSON.stringify({ type: 'error', message: err instanceof Error ? err.message : 'AI 服务暂时不可用' }), event: 'message' });
+      const message = err instanceof Error ? err.message : 'AI 服务暂时不可用';
+      await s.writeSSE({ data: JSON.stringify({ type: 'error', message }), event: 'message' });
       await s.writeSSE({ data: '[DONE]', event: 'message' });
     }
   });

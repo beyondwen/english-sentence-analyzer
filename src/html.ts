@@ -11,20 +11,20 @@ export function getHTML(): string {
   * { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
   :root {
-    --bg: #0f172a;
-    --card: #1e293b;
-    --card-hover: #263548;
-    --border: #334155;
-    --text: #e2e8f0;
-    --text-dim: #94a3b8;
-    --text-muted: #64748b;
-    --accent: #3b82f6;
-    --accent-glow: rgba(59, 130, 246, 0.15);
-    --green: #22c55e;
-    --amber: #f59e0b;
-    --purple: #a855f7;
-    --pink: #ec4899;
-    --red: #ef4444;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --card-hover: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --text-dim: #475569;
+    --text-muted: #94a3b8;
+    --accent: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.1);
+    --green: #16a34a;
+    --amber: #d97706;
+    --purple: #9333ea;
+    --pink: #db2777;
+    --red: #dc2626;
   }
 
   body { background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -58,29 +58,29 @@ export function getHTML(): string {
   }
 
   .card-glow {
-    box-shadow: 0 0 0 1px var(--border), 0 4px 24px rgba(0,0,0,0.2);
+    box-shadow: 0 0 0 1px var(--border), 0 4px 24px rgba(0,0,0,0.06);
   }
 
-  .hl-subject { background: rgba(34,197,94,0.15); color: #86efac; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
-  .hl-predicate { background: rgba(59,130,246,0.15); color: #93c5fd; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
-  .hl-object { background: rgba(245,158,11,0.15); color: #fcd34d; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
-  .hl-complement { background: rgba(168,85,247,0.15); color: #c4b5fd; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
-  .hl-clause { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 8px 12px; color: #fde68a; font-size: 13px; line-height: 1.6; }
-  .hl-modifier { background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; padding: 8px 12px; color: #c4b5fd; font-size: 13px; line-height: 1.6; }
+  .hl-subject { background: rgba(34,197,94,0.1); color: #166534; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
+  .hl-predicate { background: rgba(59,130,246,0.1); color: #1e40af; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
+  .hl-object { background: rgba(245,158,11,0.1); color: #92400e; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
+  .hl-complement { background: rgba(168,85,247,0.1); color: #7e22ce; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
+  .hl-clause { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 8px 12px; color: #92400e; font-size: 13px; line-height: 1.6; }
+  .hl-modifier { background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; padding: 8px 12px; color: #7e22ce; font-size: 13px; line-height: 1.6; }
 
   .tag {
     display: inline-flex; align-items: center;
     padding: 3px 10px; border-radius: 8px;
     font-size: 11px; font-weight: 600; letter-spacing: 0.03em;
   }
-  .tag-blue { background: rgba(59,130,246,0.15); color: #93c5fd; }
-  .tag-amber { background: rgba(245,158,11,0.15); color: #fcd34d; }
-  .tag-purple { background: rgba(168,85,247,0.15); color: #c4b5fd; }
-  .tag-pink { background: rgba(236,72,153,0.15); color: #f9a8d4; }
-  .tag-green { background: rgba(34,197,94,0.15); color: #86efac; }
-  .tag-red { background: rgba(239,68,68,0.15); color: #fca5a5; }
-  .tag-teal { background: rgba(20,184,166,0.15); color: #5eead4; }
-  .tag-gray { background: rgba(148,163,184,0.1); color: #94a3b8; }
+  .tag-blue { background: rgba(59,130,246,0.1); color: #1e40af; }
+  .tag-amber { background: rgba(245,158,11,0.1); color: #92400e; }
+  .tag-purple { background: rgba(168,85,247,0.1); color: #7e22ce; }
+  .tag-pink { background: rgba(236,72,153,0.1); color: #be185d; }
+  .tag-green { background: rgba(34,197,94,0.1); color: #166534; }
+  .tag-red { background: rgba(239,68,68,0.1); color: #b91c1c; }
+  .tag-teal { background: rgba(20,184,166,0.1); color: #115e59; }
+  .tag-gray { background: rgba(148,163,184,0.12); color: #64748b; }
 
   .clause-tree {
     display: flex;
@@ -146,6 +146,12 @@ export function getHTML(): string {
     text-decoration: line-through;
     text-decoration-color: rgba(148,163,184,0.4);
   }
+  .clause-node .simplified {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.25s ease;
+  }
   .clause-modifiers-wrap {
     transition: all 0.25s ease;
     max-height: 500px;
@@ -180,13 +186,39 @@ export function getHTML(): string {
   }
   .btn-simplify-clause:hover {
     border-color: #22c55e;
-    color: #86efac;
+    color: #166534;
     background: rgba(34,197,94,0.08);
   }
   .btn-simplify-clause.active {
     border-color: #22c55e;
-    color: #86efac;
-    background: rgba(34,197,94,0.12);
+    color: #166534;
+    background: rgba(34,197,94,0.1);
+  }
+
+  .btn-analyze-clause {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+  .btn-analyze-clause:hover {
+    border-color: #2563eb;
+    color: #1e40af;
+    background: rgba(37,99,235,0.06);
+  }
+  .btn-analyze-clause:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   .clause-children {
@@ -230,6 +262,7 @@ export function getHTML(): string {
     padding: 10px 14px;
     margin-top: 10px;
     backdrop-filter: blur(4px);
+    display: flex !important; flex-wrap: wrap !important; gap: 0;
   }
 
   .compare-container {
@@ -252,17 +285,17 @@ export function getHTML(): string {
   }
   .compare-original {
     background: rgba(239,68,68,0.04);
-    border: 1px solid rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.15);
   }
   .compare-original::before { background: #ef4444; }
   .compare-clean {
     background: rgba(34,197,94,0.04);
-    border: 1px solid rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.15);
   }
   .compare-clean::before { background: #22c55e; }
 
-  .seg-main { color: #86efac; font-weight: 600; }
-  .seg-mod { color: var(--text-muted); text-decoration: line-through; opacity: 0.45; }
+  .seg-main { color: #166534; font-weight: 600; }
+  .seg-mod { color: var(--text-muted); text-decoration: line-through; opacity: 0.5; }
   .seg-punct { color: var(--text-muted); }
 
   .compare-text {
@@ -296,11 +329,11 @@ export function getHTML(): string {
     font-weight: 500; font-size: 13px;
     cursor: pointer; transition: all 0.2s;
   }
-  .btn-ghost:hover { background: var(--card); border-color: #475569; color: var(--text); }
+  .btn-ghost:hover { background: var(--card-hover); border-color: #cbd5e1; color: var(--text); }
 
   .input-field {
     width: 100%; padding: 12px 16px;
-    background: var(--bg); border: 1.5px solid var(--border);
+    background: var(--card); border: 1.5px solid var(--border);
     border-radius: 12px; font-size: 15px; color: var(--text);
     transition: all 0.2s;
   }
@@ -309,31 +342,39 @@ export function getHTML(): string {
 
   textarea.input-field { resize: none; line-height: 1.7; }
 
-  .structure-row {
-    display: flex; align-items: baseline; gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(51,65,85,0.5);
+  #main-structure {
+    display: flex !important; flex-wrap: wrap !important; gap: 0;
   }
-  .structure-row:last-child { border-bottom: none; }
+
+  .structure-row {
+    display: inline-flex !important; align-items: baseline; gap: 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(241,245,249,0.6);
+    margin: 3px;
+  }
   .structure-label {
-    width: 36px; font-size: 11px; font-weight: 700;
+    font-size: 11px; font-weight: 700;
     color: var(--text-muted); text-transform: uppercase;
     letter-spacing: 0.08em; flex-shrink: 0;
   }
 
   .modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    background: rgba(15,23,42,0.25); backdrop-filter: blur(6px);
     z-index: 50; display: none;
     align-items: center; justify-content: center;
+    padding: 16px;
   }
   .modal-overlay.active { display: flex; }
+  .modal-overlay.active .modal { animation: modalIn 0.25s ease-out; }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
   .modal {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.12);
     width: 100%; max-width: 460px;
     margin: 16px;
     overflow: hidden;
@@ -365,7 +406,7 @@ export function getHTML(): string {
   }
   .delete-btn:hover {
     color: #ef4444 !important;
-    background: rgba(239,68,68,0.1);
+    background: rgba(239,68,68,0.08);
     opacity: 1;
   }
   .history-item:hover .delete-btn {
@@ -373,7 +414,7 @@ export function getHTML(): string {
   }
 
   .grammar-card {
-    background: rgba(245,158,11,0.05);
+    background: rgba(245,158,11,0.04);
     border: 1px solid rgba(245,158,11,0.15);
     border-radius: 12px;
     padding: 14px 16px;
@@ -390,7 +431,7 @@ export function getHTML(): string {
     cursor: default;
   }
   .word-item:hover {
-    background: rgba(255,255,255,0.05);
+    background: rgba(15,23,42,0.04);
     transform: translateY(-2px);
   }
   .word-text {
@@ -408,26 +449,72 @@ export function getHTML(): string {
     white-space: nowrap;
   }
 
-  .pos-noun { background: rgba(59,130,246,0.15); color: #93c5fd; }
-  .pos-verb { background: rgba(34,197,94,0.15); color: #86efac; }
-  .pos-adj { background: rgba(168,85,247,0.15); color: #c4b5fd; }
-  .pos-adv { background: rgba(236,72,153,0.15); color: #f9a8d4; }
-  .pos-prep { background: rgba(20,184,166,0.15); color: #5eead4; }
-  .pos-conj { background: rgba(245,158,11,0.15); color: #fcd34d; }
-  .pos-det { background: rgba(239,68,68,0.12); color: #fca5a5; }
-  .pos-pron { background: rgba(99,102,241,0.15); color: #a5b4fc; }
-  .pos-modal { background: rgba(34,197,94,0.2); color: #4ade80; }
-  .pos-aux { background: rgba(34,197,94,0.12); color: #86efac; }
-  .pos-inf { background: rgba(245,158,11,0.1); color: #fde68a; }
-  .pos-rel { background: rgba(168,85,247,0.12); color: #d8b4fe; }
+  .pos-noun { background: rgba(59,130,246,0.1); color: #1e40af; }
+  .pos-verb { background: rgba(34,197,94,0.1); color: #166534; }
+  .pos-adj { background: rgba(168,85,247,0.1); color: #7e22ce; }
+  .pos-adv { background: rgba(236,72,153,0.1); color: #be185d; }
+  .pos-prep { background: rgba(20,184,166,0.1); color: #115e59; }
+  .pos-conj { background: rgba(245,158,11,0.1); color: #92400e; }
+  .pos-det { background: rgba(239,68,68,0.08); color: #b91c1c; }
+  .pos-pron { background: rgba(99,102,241,0.1); color: #4338ca; }
+  .pos-modal { background: rgba(34,197,94,0.12); color: #166534; }
+  .pos-aux { background: rgba(34,197,94,0.08); color: #166534; }
+  .pos-inf { background: rgba(245,158,11,0.08); color: #92400e; }
+  .pos-rel { background: rgba(168,85,247,0.08); color: #7e22ce; }
   .pos-punct { background: transparent; color: var(--text-muted); }
-  .pos-num { background: rgba(236,72,153,0.12); color: #f9a8d4; }
-  .pos-part { background: rgba(20,184,166,0.12); color: #5eead4; }
-  .pos-intj { background: rgba(245,158,11,0.15); color: #fcd34d; }
+  .pos-num { background: rgba(236,72,153,0.08); color: #be185d; }
+  .pos-part { background: rgba(20,184,166,0.08); color: #115e59; }
+  .pos-intj { background: rgba(245,158,11,0.1); color: #92400e; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+  .detail-section {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .detail-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .detail-section-title::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .detail-section-title.title-blue::before { background: #3b82f6; }
+  .detail-section-title.title-purple::before { background: #a855f7; }
+  .detail-section-title.title-amber::before { background: #f59e0b; }
+  .detail-section-title.title-green::before { background: #22c55e; }
+  .detail-section-title.title-pink::before { background: #ec4899; }
+
+  .detail-clause-quote {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--text);
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(168,85,247,0.06));
+    border: 1px solid rgba(59,130,246,0.12);
+    border-radius: 14px;
+    border-left: 4px solid #3b82f6;
+    margin-bottom: 20px;
+  }
+
+  .hl-core { color: var(--text); font-weight: 600; }
+  .hl-mod { color: var(--text-muted); text-decoration: line-through; opacity: 0.5; }
 </style>
 </head>
 <body>
@@ -453,7 +540,7 @@ export function getHTML(): string {
         <div class="section-icon" style="background:rgba(245,158,11,0.15)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
         </div>
-        <span class="text-sm" style="color:#fcd34d">尚未配置 AI API，请先完成配置</span>
+        <span class="text-sm" style="color:#92400e">尚未配置 AI API，请先完成配置</span>
       </div>
       <button onclick="openSettings()" class="btn-primary" style="font-size:12px;padding:6px 16px">去设置</button>
     </div>
@@ -486,7 +573,7 @@ export function getHTML(): string {
   <div id="error-box" class="hidden mb-6 card" style="border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.05)">
     <div class="flex items-center gap-3">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-      <span id="error-text" class="text-sm" style="color:#fca5a5"></span>
+      <span id="error-text" class="text-sm" style="color:#b91c1c"></span>
     </div>
   </div>
 
@@ -509,95 +596,14 @@ export function getHTML(): string {
         <p id="original-text" class="text-sm leading-relaxed mt-3 pt-3" style="color:var(--text-dim);border-top:1px solid var(--border)"></p>
       </div>
 
-      <div id="compare-section" class="hidden fade-in stagger-2 mb-6">
-        <div id="compare-loading" class="hidden card p-4 mb-3">
-          <div class="flex items-center gap-2">
-            <div class="w-2 h-2 rounded-full animate-pulse" style="background:var(--accent)"></div>
-            <span class="text-xs" style="color:var(--text-muted)">AI 正在识别主干和修饰成分...</span>
-          </div>
-        </div>
-        <div id="compare-result" class="hidden compare-container">
-          <div class="compare-panel compare-original">
-            <div class="flex items-center gap-2 mb-3">
-              <div class="w-2 h-2 rounded-full" style="background:#ef4444"></div>
-              <span class="text-xs font-bold" style="color:#fca5a5;letter-spacing:0.06em">原文 · 修饰删除线</span>
-            </div>
-            <div id="compare-with-strikethrough" class="compare-text"></div>
-          </div>
-          <div class="compare-panel compare-clean">
-            <div class="flex items-center gap-2 mb-3">
-              <div class="w-2 h-2 rounded-full" style="background:#22c55e"></div>
-              <span class="text-xs font-bold" style="color:#86efac;letter-spacing:0.06em">仅主干</span>
-            </div>
-            <div id="compare-clean-text" class="compare-text"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card fade-in stagger-3 mb-4 card-glow" style="border-left:3px solid var(--green)">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-3">
-            <div class="section-icon" style="background:rgba(34,197,94,0.15)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path d="M4 7h16M4 12h10"/></svg>
-            </div>
-            <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">句子主干</h3>
-          </div>
-          <button id="btn-simplify" class="btn-ghost text-xs flex items-center gap-1.5" style="padding:6px 14px">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-            去掉修饰
-          </button>
-        </div>
-        <div id="main-structure"></div>
-      </div>
-
-      <div id="clauses-section" class="hidden card fade-in stagger-3 mb-4 card-glow" style="border-left:3px solid var(--amber)">
+      <div id="segments-section" class="hidden card fade-in stagger-3 mb-4 card-glow" style="border-left:3px solid var(--accent)">
         <div class="flex items-center gap-3 mb-4">
-          <div class="section-icon" style="background:rgba(245,158,11,0.15)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><path d="M6 3v18M18 3v18M3 12h18"/></svg>
-          </div>
-          <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">从句分析</h3>
-        </div>
-        <div id="clauses-list"></div>
-      </div>
-
-      <div id="modifiers-section" class="hidden card fade-in stagger-3 mb-4 card-glow" style="border-left:3px solid var(--purple)">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="section-icon" style="background:rgba(168,85,247,0.15)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4"/></svg>
-          </div>
-          <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">修饰成分</h3>
-        </div>
-        <div id="modifiers-list" class="space-y-2"></div>
-      </div>
-
-      <div class="card fade-in stagger-4 mb-4" style="border-left:3px solid var(--accent)">
-        <div class="flex items-center gap-3 mb-3">
           <div class="section-icon" style="background:var(--accent-glow)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><path d="M5 12h14"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><path d="M4 7h16M4 12h10M4 17h14"/></svg>
           </div>
-          <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">翻译</h3>
+          <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">句子切割</h3>
         </div>
-        <p id="translation" class="leading-relaxed" style="color:var(--text-dim)"></p>
-      </div>
-
-      <div id="grammar-section" class="hidden card fade-in stagger-5 mb-4" style="border-left:3px solid var(--amber)">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="section-icon" style="background:rgba(245,158,11,0.15)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">语法要点</h3>
-        </div>
-        <div id="grammar-list" class="space-y-3"></div>
-      </div>
-
-      <div id="restructure-section" class="hidden card fade-in stagger-6 mb-4" style="border-left:3px solid var(--green)">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="section-icon" style="background:rgba(34,197,94,0.15)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 class="text-sm font-bold" style="letter-spacing:0.06em;color:var(--text)">简化版本</h3>
-        </div>
-        <div id="restructure-content"></div>
+        <div id="segments-tree"></div>
       </div>
     </div>
   </div>
@@ -615,7 +621,7 @@ export function getHTML(): string {
     </div>
     <div id="history-list" class="space-y-1"></div>
     <div id="history-empty" class="hidden text-center py-12">
-      <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style="background:var(--bg)">
+      <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style="background:#f1f5f9">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
       <p class="text-sm" style="color:var(--text-muted)">暂无历史记录</p>
@@ -663,7 +669,7 @@ export function getHTML(): string {
       </div>
     </div>
 
-    <div class="px-6 py-4 flex justify-between items-center" style="background:var(--bg);border-top:1px solid var(--border)">
+    <div class="px-6 py-4 flex justify-between items-center" style="background:#f8fafc;border-top:1px solid var(--border)">
       <button id="btn-test" class="btn-ghost text-xs flex items-center gap-1.5">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         测试连接
@@ -675,6 +681,22 @@ export function getHTML(): string {
     </div>
 
     <div id="settings-msg" class="hidden mx-6 mb-4 p-3 rounded-xl text-sm"></div>
+  </div>
+</div>
+
+<!-- Clause Detail Modal -->
+<div id="clause-detail-modal" class="modal-overlay">
+  <div class="modal" style="max-width:960px;width:calc(100% - 48px);max-height:92vh;display:flex;flex-direction:column">
+    <div class="px-8 pt-6 pb-5" style="border-bottom:1px solid var(--border);flex-shrink:0">
+      <div class="flex justify-between items-center mb-2">
+        <span id="clause-detail-tag" class="tag tag-blue" style="font-size:13px;padding:4px 14px"></span>
+        <button id="btn-close-clause-detail" class="w-8 h-8 rounded-lg flex items-center justify-center transition" style="color:var(--text-muted)" onmouseover="this.style.background='var(--card-hover)'" onmouseout="this.style.background='transparent'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <p id="clause-detail-subtitle" class="text-sm" style="color:var(--text-dim)"></p>
+    </div>
+    <div id="clause-detail-body" class="px-8 py-6" style="overflow-y:auto;flex:1"></div>
   </div>
 </div>
 
@@ -706,8 +728,9 @@ $('btn-settings').addEventListener('click', openSettings);
 $('btn-close-settings').addEventListener('click', closeSettings);
 $('btn-cancel-settings').addEventListener('click', closeSettings);
 $('btn-save-settings').addEventListener('click', saveSettings);
-$('btn-simplify').addEventListener('click', simplifySentence);
 $('btn-test').addEventListener('click', testConnection);
+$('btn-close-clause-detail').addEventListener('click', () => $('clause-detail-modal').classList.remove('active'));
+$('clause-detail-modal').addEventListener('click', e => { if (e.target === $('clause-detail-modal')) $('clause-detail-modal').classList.remove('active'); });
 $('btn-toggle-key').addEventListener('click', () => {
   const k = $('setting-key');
   if (k.type === 'password') { k.type = 'text'; $('btn-toggle-key').textContent = '隐藏'; }
@@ -737,7 +760,7 @@ async function loadSettings() {
     $('setting-model').value = d.ai_model || '';
     $('setting-key').value = '';
     $('key-status').textContent = d.has_api_key ? '已设置 API Key' : '未设置';
-    $('key-status').style.color = d.has_api_key ? '#22c55e' : 'var(--text-muted)';
+    $('key-status').style.color = d.has_api_key ? '#16a34a' : 'var(--text-muted)';
   } catch {}
 }
 
@@ -771,8 +794,8 @@ async function testConnection() {
 function showSettingsMsg(msg, type) {
   const el = $('settings-msg');
   el.textContent = msg;
-  el.style.background = type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)';
-  el.style.color = type === 'success' ? '#86efac' : '#fca5a5';
+  el.style.background = type === 'success' ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)';
+  el.style.color = type === 'success' ? '#166534' : '#b91c1c';
   el.style.border = '1px solid ' + (type === 'success' ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)');
   el.classList.remove('hidden');
 }
@@ -834,78 +857,79 @@ function structureRow(label, text, cls) {
   return '<div class="structure-row"><span class="structure-label">' + label + '</span><span class="' + cls + '">' + esc(text) + '</span></div>';
 }
 
-const DEPTH_COLORS = ['#3b82f6', '#f59e0b', '#a855f7', '#ec4899', '#14b8a6', '#ef4444'];
-const DEPTH_BG = ['rgba(59,130,246,0.06)', 'rgba(245,158,11,0.06)', 'rgba(168,85,247,0.06)', 'rgba(236,72,153,0.06)', 'rgba(20,184,166,0.06)', 'rgba(239,68,68,0.06)'];
-const DEPTH_LABELS = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'];
-const DEPTH_TAG_CLS = ['tag-blue', 'tag-amber', 'tag-purple', 'tag-pink', 'tag-teal', 'tag-red'];
+const PATTERN_COLORS = { SV: '#3b82f6', SVO: '#22c55e', SVP: '#f59e0b', SVOO: '#a855f7', SVOC: '#ec4899' };
 
-function renderClause(c, depth, path) {
-  const color = DEPTH_COLORS[depth % 6];
-  const bg = DEPTH_BG[depth % 6];
-  const tagCls = DEPTH_TAG_CLS[depth % 6];
-  const label = DEPTH_LABELS[depth % 6] || 'L' + (depth + 1);
-  const hasChildren = c.clauses && c.clauses.length > 0;
-  const currentPath = path ? path + ' → ' + c.type : c.type;
+function renderClauseTree(node, depth) {
+  const color = PATTERN_COLORS[node.pattern] || '#3b82f6';
+  const bg = color + '0a';
+  const borderBg = color + '18';
+  const nodeId = 'cn-' + Math.random().toString(36).slice(2, 8);
+  const hasExtras = (node.modifiers && node.modifiers.length > 0) ||
+    node.subject_clause || node.object_clause || node.complement_clause;
 
   let html = '<div class="clause-node">';
-
-  // Header: connector dot + line + type label + simplify button
   html += '<div class="clause-node-header">';
   html += '<div class="clause-connector">';
   html += '<div class="clause-connector-dot" style="background:' + color + '"></div>';
-  html += '<div class="clause-connector-line" style="background:' + color + ';opacity:0.4"></div>';
   html += '</div>';
-  html += '<span class="clause-depth-indicator" style="background:' + color + '22;color:' + color + '">' + label + '</span>';
-  html += '<span class="tag ' + tagCls + '">' + esc(c.type) + '</span>';
-  if (c.belongs_to) html += '<span class="tag tag-gray">属于: ' + esc(c.belongs_to) + '</span>';
-  html += '<button class="btn-simplify-clause" data-target="' + clauseId + '">去掉修饰</button>';
+  html += '<span class="tag" style="background:' + color + '15;color:' + color + ';font-weight:700">' + esc(node.pattern) + '</span>';
+  if (hasExtras) html += '<button class="btn-simplify-clause" data-target="' + nodeId + '">去掉修饰</button>';
+  html += '<button class="btn-analyze-clause" data-clause="' + esc(node.text) + '" data-clause-type="' + esc(node.pattern) + '">详细分析</button>';
   html += '</div>';
 
-  // Body card
-  const clauseId = 'clause-' + Math.random().toString(36).slice(2, 8);
-  html += '<div class="clause-body" id="' + clauseId + '" style="background:' + bg + '">';
+  html += '<div class="clause-body" style="background:' + bg + ';border:1px solid ' + borderBg + '">';
   html += '<div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:14px 0 0 14px;background:' + color + '"></div>';
 
-  // Content
-  html += '<div class="hl-clause mb-2" style="border-color:' + color + '33">' + esc(c.content) + '</div>';
-  html += '<div class="text-sm mb-3" style="color:var(--text-dim)">' + esc(c.function) + '</div>';
+  html += '<div class="hl-clause mb-3" style="border-color:' + color + '33;font-size:14px;line-height:1.7">' + esc(node.text) + '</div>';
 
-  // Structure
-  if (c.structure && (c.structure.subject || c.structure.predicate || c.structure.object || c.structure.complement)) {
-    const s = c.structure;
-    html += '<div class="clause-structure-box" style="background:rgba(15,23,42,0.4)">';
-    html += structureRow('主语', s.subject, 'hl-subject');
-    html += structureRow('谓语', s.predicate, 'hl-predicate');
-    html += structureRow('宾语', s.object, 'hl-object');
-    html += structureRow('补语', s.complement, 'hl-complement');
-    html += '</div>';
-  }
+  html += '<div style="display:flex;flex-wrap:wrap;gap:0">';
+  if (node.subject) html += structureRow('S', node.subject, 'hl-subject');
+  if (node.predicate) html += structureRow('V', node.predicate, 'hl-predicate');
+  if (node.object) html += structureRow('O', node.object, 'hl-object');
+  if (node.complement) html += structureRow('C', node.complement, 'hl-complement');
+  html += '</div>';
 
-  // Modifiers
-  if (c.modifiers && c.modifiers.length > 0) {
-    html += '<div class="clause-modifiers-wrap mt-3 space-y-1.5">';
-    for (const m of c.modifiers) {
-      html += '<div class="flex items-start gap-2 text-xs">';
-      html += '<span class="tag tag-purple" style="flex-shrink:0">' + esc(m.type) + '</span>';
-      html += '<span class="hl-modifier" style="padding:4px 8px">' + esc(m.content) + '</span>';
-      html += '<span style="color:var(--text-muted)">→ ' + esc(m.modifies) + '</span>';
+  if (hasExtras) {
+    html += '<div id="' + nodeId + '">';
+
+    if (node.modifiers && node.modifiers.length > 0) {
+      let modHtml = '';
+      let clauseHtml = '';
+      for (const m of node.modifiers) {
+        if (m.clause) {
+          clauseHtml += '<div class="clause-children" style="margin-top:6px">';
+          clauseHtml += '<div style="position:absolute;left:14px;top:0;bottom:12px;width:2px;border-radius:1px;background:' + color + ';opacity:0.15"></div>';
+          clauseHtml += '<div class="text-xs font-bold mb-1" style="color:var(--text-muted);letter-spacing:0.06em;padding-left:24px">' + esc(m.label) + ' ↓</div>';
+          clauseHtml += renderClauseTree(m.clause, depth + 1);
+          clauseHtml += '</div>';
+        } else {
+          modHtml += '<span class="tag tag-gray text-xs">' + esc(m.label) + ': ' + esc(m.text) + '</span>';
+        }
+      }
+      if (modHtml) html += '<div class="flex flex-wrap gap-1.5 mt-2">' + modHtml + '</div>';
+      html += clauseHtml;
+    }
+
+    const childClauses = [
+      node.subject_clause && { label: 'S', clause: node.subject_clause },
+      node.object_clause && { label: 'O', clause: node.object_clause },
+      node.complement_clause && { label: 'C', clause: node.complement_clause },
+    ].filter(Boolean);
+
+    if (childClauses.length > 0) {
+      html += '<div class="clause-children">';
+      html += '<div style="position:absolute;left:14px;top:0;bottom:12px;width:2px;border-radius:1px;background:' + color + ';opacity:0.15"></div>';
+      for (const { label, clause } of childClauses) {
+        html += '<div class="text-xs font-bold mb-1" style="color:var(--text-muted);letter-spacing:0.06em;padding-left:24px">' + label + ' 内部从句 ↓</div>';
+        html += renderClauseTree(clause, depth + 1);
+      }
       html += '</div>';
     }
+
     html += '</div>';
   }
 
   html += '</div>';
-
-  // Children
-  if (hasChildren) {
-    html += '<div class="clause-children" style="--child-color:' + color + '">';
-    html += '<div style="position:absolute;left:14px;top:0;bottom:12px;width:2px;border-radius:1px;background:' + color + ';opacity:0.15"></div>';
-    for (const sub of c.clauses) {
-      html += renderClause(sub, depth + 1, currentPath);
-    }
-    html += '</div>';
-  }
-
   html += '</div>';
   return html;
 }
@@ -913,35 +937,27 @@ function renderClause(c, depth, path) {
 function renderResult(data) {
   streamingText.classList.add('hidden');
   parsedResult.classList.remove('hidden');
-  $('compare-section').classList.add('hidden');
 
   if (data.original) {
-    currentSentence = data.original;
+    currentOriginal = data.original;
     $('original-sentence').classList.remove('hidden');
-    $('original-text').textContent = data.original;
-    if (data.word_annotations && data.word_annotations.length > 0) {
-      $('word-annotations').innerHTML = data.word_annotations.map(w => {
-        const posClass = getPosClass(w.pos);
-        return '<div class="word-item"><span class="word-text">' + esc(w.word) + '</span><span class="word-pos ' + posClass + '">' + esc(w.pos) + '</span></div>';
-      }).join('');
+    if (data.highlight && data.highlight.length > 0) {
+      $('original-text').innerHTML = data.highlight.map(h =>
+        '<span class="hl-' + h.role + '">' + esc(h.text) + '</span>'
+      ).join('');
     } else {
-      $('word-annotations').innerHTML = '';
+      $('original-text').textContent = data.original;
     }
+    $('word-annotations').innerHTML = '';
   }
 
-  const ms = data.main_structure;
-  let msHtml = '';
-  msHtml += structureRow('主语', ms.subject, 'hl-subject');
-  msHtml += structureRow('谓语', ms.predicate, 'hl-predicate');
-  msHtml += structureRow('宾语', ms.object, 'hl-object');
-  msHtml += structureRow('补语', ms.complement, 'hl-complement');
-  $('main-structure').innerHTML = msHtml;
-
-  if (data.clauses && data.clauses.length > 0) {
-    $('clauses-section').classList.remove('hidden');
-    $('clauses-list').innerHTML = '<div class="clause-tree">' + data.clauses.map(c => renderClause(c, 0, '')).join('') + '</div>';
-
-    $('clauses-list').querySelectorAll('.btn-simplify-clause').forEach(btn => {
+  if (data.clause) {
+    $('segments-section').classList.remove('hidden');
+    $('segments-tree').innerHTML = '<div class="clause-tree">' + renderClauseTree(data.clause, 0) + '</div>';
+    $('segments-tree').querySelectorAll('.btn-analyze-clause').forEach(btn => {
+      btn.addEventListener('click', () => analyzeClauseDetail(btn));
+    });
+    $('segments-tree').querySelectorAll('.btn-simplify-clause').forEach(btn => {
       btn.addEventListener('click', () => {
         const target = document.getElementById(btn.dataset.target);
         if (!target) return;
@@ -950,58 +966,38 @@ function renderResult(data) {
         btn.textContent = isActive ? '显示全部' : '去掉修饰';
       });
     });
-  } else { $('clauses-section').classList.add('hidden'); }
-
-  if (data.modifiers && data.modifiers.length > 0) {
-    $('modifiers-section').classList.remove('hidden');
-    $('modifiers-list').innerHTML = data.modifiers.map(m =>
-      '<div class="flex items-start gap-3 p-3" style="background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.12);border-radius:12px">' +
-      '<span class="tag tag-purple" style="flex-shrink:0">' + esc(m.type) + '</span>' +
-      '<div class="flex-1 min-w-0"><div class="hl-modifier mb-1" style="padding:4px 8px">' + esc(m.content) + '</div>' +
-      '<div class="text-xs" style="color:var(--text-muted)">修饰: ' + esc(m.modifies) + '</div></div></div>'
-    ).join('');
-  } else { $('modifiers-section').classList.add('hidden'); }
-
-  $('translation').textContent = data.translation;
-
-  if (data.grammar_points && data.grammar_points.length > 0) {
-    $('grammar-section').classList.remove('hidden');
-    $('grammar-list').innerHTML = data.grammar_points.map(g =>
-      '<div class="grammar-card">' +
-      '<div class="font-semibold text-sm mb-1" style="color:#fcd34d">' + esc(g.point) + '</div>' +
-      '<div class="text-sm mb-2 leading-relaxed" style="color:var(--text-dim)">' + esc(g.explanation) + '</div>' +
-      '<div class="text-xs font-mono" style="color:var(--text-muted);background:rgba(15,23,42,0.5);padding:6px 10px;border-radius:8px">例: ' + esc(g.example) + '</div></div>'
-    ).join('');
-  } else { $('grammar-section').classList.add('hidden'); }
-
-  if (data.restructuring) {
-    $('restructure-section').classList.remove('hidden');
-    $('restructure-content').innerHTML =
-      '<div class="hl-subject" style="padding:12px 16px;margin-bottom:8px;line-height:1.7">' + esc(data.restructuring.simple_version) + '</div>' +
-      '<div class="text-sm leading-relaxed" style="color:var(--text-dim)">' + esc(data.restructuring.explanation) + '</div>';
-  } else { $('restructure-section').classList.add('hidden'); }
+  } else { $('segments-section').classList.add('hidden'); }
 }
 
-let currentSentence = '';
+let currentOriginal = '';
 
-async function simplifySentence() {
-  if (!currentSentence) return;
-  const btn = $('btn-simplify');
-  const loading = $('compare-loading');
-  const result = $('compare-result');
-  const section = $('compare-section');
+async function analyzeClauseDetail(btn) {
+  const clauseText = btn.dataset.clause;
+  const clauseType = btn.dataset.clauseType;
+  const clauseFunction = btn.dataset.clauseFunction;
 
-  section.classList.remove('hidden');
-  loading.classList.remove('hidden');
-  result.classList.add('hidden');
-  btn.disabled = true;
-  btn.innerHTML = '<span style="display:inline-block;width:12px;height:12px;border:2px solid var(--text-muted);border-top-color:transparent;border-radius:50%;animation:spin 0.6s linear infinite"></span> 分析中';
+  if (!currentOriginal) return;
+
+  const modal = $('clause-detail-modal');
+  const body = $('clause-detail-body');
+  const subtitle = $('clause-detail-subtitle');
+  const tag = $('clause-detail-tag');
+
+  tag.textContent = clauseType;
+  subtitle.textContent = clauseFunction || '';
+  body.innerHTML = '<div class="detail-clause-quote">' + esc(clauseText) + '</div><div class="flex items-center justify-center py-8"><div class="text-center"><span style="display:inline-block;width:20px;height:20px;border:2.5px solid #e2e8f0;border-top-color:#3b82f6;border-radius:50%;animation:spin 0.6s linear infinite"></span><p class="text-xs mt-3" style="color:var(--text-muted)">AI 正在分析...</p></div></div>';
+  modal.classList.add('active');
 
   try {
-    const res = await fetch('/api/simplify', {
+    const res = await fetch('/api/analyze-clause', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sentence: currentSentence })
+      body: JSON.stringify({
+        sentence: currentOriginal,
+        clause: clauseText,
+        clause_type: clauseType,
+        clause_function: clauseFunction,
+      })
     });
 
     if (!res.ok) { const e = await res.json(); throw new Error(e.error || '请求失败'); }
@@ -1024,7 +1020,10 @@ async function simplifySentence() {
         try {
           const msg = JSON.parse(d);
           if (msg.type === 'result') {
-            renderSimplifyResult(msg.data.segments);
+            body.innerHTML = '<div class="detail-clause-quote">' + esc(clauseText) + '</div>';
+            const detailDiv = document.createElement('div');
+            renderClauseDetail(detailDiv, msg.data);
+            body.appendChild(detailDiv);
           } else if (msg.type === 'error') {
             throw new Error(msg.message);
           }
@@ -1032,42 +1031,71 @@ async function simplifySentence() {
       }
     }
   } catch (err) {
-    showError(err.message);
-    section.classList.add('hidden');
-  } finally {
-    loading.classList.add('hidden');
-    btn.disabled = false;
-    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 去掉修饰';
+    body.innerHTML = '<div class="text-sm" style="color:#b91c1c">分析失败: ' + esc(err.message) + '</div>';
   }
 }
 
-function renderSimplifyResult(segments) {
-  const result = $('compare-result');
-  result.classList.remove('hidden');
+function renderClauseDetail(container, detail) {
+  let html = '';
 
-  // Left: original with strikethrough on modifiers
-  let strikethroughHtml = '';
-  for (const seg of segments) {
-    if (seg.role === 'main') {
-      strikethroughHtml += '<span class="seg-main">' + esc(seg.text) + '</span>';
-    } else if (seg.role === 'mod') {
-      strikethroughHtml += '<span class="seg-mod">' + esc(seg.text) + '</span>';
-    } else {
-      strikethroughHtml += '<span class="seg-punct">' + esc(seg.text) + '</span>';
-    }
+  if (detail.structure && (detail.structure.subject || detail.structure.predicate || detail.structure.object || detail.structure.complement)) {
+    html += '<div class="detail-section">';
+    html += '<div class="detail-section-title title-blue">内部结构</div>';
+    html += '<div style="display:flex;flex-wrap:wrap;gap:0">';
+    html += structureRow('主语', detail.structure.subject, 'hl-subject');
+    html += structureRow('谓语', detail.structure.predicate, 'hl-predicate');
+    html += structureRow('宾语', detail.structure.object, 'hl-object');
+    html += structureRow('补语', detail.structure.complement, 'hl-complement');
+    html += '</div></div>';
   }
-  $('compare-with-strikethrough').innerHTML = strikethroughHtml;
 
-  // Right: only main structure
-  let cleanHtml = '';
-  for (const seg of segments) {
-    if (seg.role === 'main') {
-      cleanHtml += '<span class="seg-main">' + esc(seg.text) + '</span>';
-    } else if (seg.role === 'punct') {
-      cleanHtml += '<span class="seg-punct">' + esc(seg.text) + '</span>';
-    }
+  if (detail.translation) {
+    html += '<div class="detail-section">';
+    html += '<div class="detail-section-title title-green">翻译</div>';
+    html += '<div class="text-sm leading-relaxed" style="color:var(--text)">' + esc(detail.translation) + '</div>';
+    html += '</div>';
   }
-  $('compare-clean-text').innerHTML = cleanHtml;
+
+  if (detail.word_annotations && detail.word_annotations.length > 0) {
+    html += '<div class="detail-section">';
+    html += '<div class="detail-section-title title-amber">词性标注</div>';
+    html += '<div class="flex flex-wrap gap-x-1 gap-y-2">';
+    for (const w of detail.word_annotations) {
+      const posClass = getPosClass(w.pos);
+      html += '<div class="word-item"><span class="word-text">' + esc(w.word) + '</span><span class="word-pos ' + posClass + '">' + esc(w.pos) + '</span></div>';
+    }
+    html += '</div></div>';
+  }
+
+  if (detail.modifiers && detail.modifiers.length > 0) {
+    html += '<div class="detail-section">';
+    html += '<div class="detail-section-title title-purple">修饰成分</div>';
+    for (const m of detail.modifiers) {
+      html += '<div class="flex items-start gap-2 text-xs mb-2">';
+      html += '<span class="tag tag-purple" style="flex-shrink:0">' + esc(m.type) + '</span>';
+      html += '<span class="hl-modifier" style="padding:4px 8px">' + esc(m.content) + '</span>';
+      html += '<span style="color:var(--text-muted)">→ ' + esc(m.modifies) + '</span>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  if (detail.grammar_points && detail.grammar_points.length > 0) {
+    html += '<div class="detail-section">';
+    html += '<div class="detail-section-title title-pink">语法要点</div>';
+    for (let i = 0; i < detail.grammar_points.length; i++) {
+      const g = detail.grammar_points[i];
+      if (i > 0) html += '<div style="border-top:1px solid var(--border);margin:10px 0"></div>';
+      html += '<div>';
+      html += '<div class="font-semibold text-sm mb-1" style="color:#92400e">' + esc(g.point) + '</div>';
+      html += '<div class="text-sm mb-2 leading-relaxed" style="color:var(--text-dim)">' + esc(g.explanation) + '</div>';
+      html += '<div class="text-xs font-mono" style="color:var(--text-muted);background:#f1f5f9;padding:6px 10px;border-radius:8px">例: ' + esc(g.example) + '</div>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
 }
 
 async function toggleHistory() {
